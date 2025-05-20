@@ -1,11 +1,7 @@
 #include <stdio.h>
 
 int main() {
-    int a = 10;
-    int b = 20;
-    int c;
-
+    int a = 10,b=5,c;
     c = a + b;
-
-    return c;
+    printf("values of a,b and c\n",a,b,c);
 }
