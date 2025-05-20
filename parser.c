@@ -6,8 +6,8 @@ void parse(Token* tokens) {
     int i = 0;
     while (tokens[i].type != TOKEN_EOF) {
         if (tokens[i].type == TOKEN_INT) {
-            i++;  // Move to identifier
-            if (tokens[i].type == TOKEN_IDENTIFIER) {
+            i++;  
+            while (tokens[i].type == TOKEN_IDENTIFIER) {
                 char varName[100];
                 strcpy(varName, tokens[i].lexeme);
                 i++;
@@ -16,14 +16,18 @@ void parse(Token* tokens) {
                     if (tokens[i].type == TOKEN_NUMBER || tokens[i].type == TOKEN_IDENTIFIER) {
                         printf("Declare int %s and assign %s\n", varName, tokens[i].lexeme);
                         i++;
-                        if (tokens[i].type == TOKEN_SEMICOLON) {
+                        if (tokens[i].type == TOKEN_SEMICOLON||tokens[i].type == TOKEN_COMMA) {
                             i++;
                         }
+
                     }
                 } else if (tokens[i].type == TOKEN_SEMICOLON) {
                     printf("Declare int %s\n", varName);
                     i++;
+                    break;
                 }
+
+
             }
         } else if (tokens[i].type == TOKEN_IDENTIFIER) {
             char varName[100];
@@ -65,7 +69,41 @@ void parse(Token* tokens) {
         } else if (tokens[i].type == TOKEN_CLOSE_BRACE) {
             printf("End Block\n");
             i++;
-        } else {
+        }
+
+        else if (tokens[i].type == TOKEN_ROUND_BRACE_OPEN) {
+            
+            i++;
+        }
+
+        else if (tokens[i].type == TOKEN_ROUND_BRACE_CLOSE) {
+            
+            i++;
+        }
+        else if(tokens[i].type==TOKEN_PRINT){
+            
+            i++;
+        }
+        else if(tokens[i].type==TOKEN_SLIT){
+            
+            i++;
+            while(tokens[i].type!=TOKEN_SLIT){
+                i++;
+            }
+            i++;
+            while(tokens[i].type==TOKEN_COMMA){
+                
+                i++;
+                if(tokens[i].type==TOKEN_IDENTIFIER){
+                    printf("Print %s\n",tokens[i].lexeme);
+                    i++;
+                }
+            }
+        }
+      
+        
+        
+        else {
             i++;
         }
     }
