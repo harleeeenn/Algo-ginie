@@ -17,7 +17,13 @@ typedef enum {
     TOKEN_ASSIGN,
     TOKEN_OPERATOR,
     TOKEN_UNKNOWN,
-    TOKEN_EOF
+    TOKEN_EOF,
+    TOKEN_PRINT,
+    TOKEN_STRING,
+    TOKEN_COMMA,
+    TOKEN_SLIT,
+    TOKEN_ROUND_BRACE_OPEN,
+    TOKEN_ROUND_BRACE_CLOSE,
 } TokenType;
 
 typedef struct {
