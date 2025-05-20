@@ -36,6 +36,7 @@ Token* tokenize(const char* filename, int* tokenCount) {
             else if (strcmp(buffer, "for") == 0) tokens[*tokenCount].type = TOKEN_FOR;
             else if (strcmp(buffer, "while") == 0) tokens[*tokenCount].type = TOKEN_WHILE;
             else if (strcmp(buffer, "return") == 0) tokens[*tokenCount].type = TOKEN_RETURN;
+            else if (strcmp(buffer, "printf") == 0) tokens[*tokenCount].type = TOKEN_PRINT;
             else tokens[*tokenCount].type = TOKEN_IDENTIFIER;
 
             strcpy(tokens[*tokenCount].lexeme, buffer);
@@ -67,6 +68,30 @@ Token* tokenize(const char* filename, int* tokenCount) {
                     tokens[*tokenCount].lexeme[1] = '\0';
                     (*tokenCount)++;
                     break;
+                case '(':
+                    tokens[*tokenCount].type = TOKEN_ROUND_BRACE_OPEN;
+                    tokens[*tokenCount].lexeme[0] = ch;
+                    tokens[*tokenCount].lexeme[1] = '\0';
+                    (*tokenCount)++;
+                    break; 
+                case ')':
+                    tokens[*tokenCount].type = TOKEN_ROUND_BRACE_CLOSE;
+                    tokens[*tokenCount].lexeme[0] = ch;
+                    tokens[*tokenCount].lexeme[1] = '\0';
+                    (*tokenCount)++;
+                    break;
+                case '"':
+                    tokens[*tokenCount].type = TOKEN_SLIT;
+                    tokens[*tokenCount].lexeme[0] = ch;
+                    tokens[*tokenCount].lexeme[1] = '\0';
+                    (*tokenCount)++;
+                    break;    
+                case ',':
+                    tokens[*tokenCount].type = TOKEN_COMMA;
+                    tokens[*tokenCount].lexeme[0] = ch;
+                    tokens[*tokenCount].lexeme[1] = '\0';
+                    (*tokenCount)++;
+                    break;           
                 case ';':
                     tokens[*tokenCount].type = TOKEN_SEMICOLON;
                     tokens[*tokenCount].lexeme[0] = ch;
