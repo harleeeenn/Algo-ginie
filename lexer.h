@@ -17,4 +17,4 @@ typedef struct {
 
 Token* tokenize(const char* filename, int* tokenCount);
 
-#endif  
+#endif  // LEXER_H
