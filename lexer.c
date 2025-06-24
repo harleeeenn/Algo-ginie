@@ -7,23 +7,56 @@
 #define MAX_TOKENS 1000
 
 int isKeyword(const char* word) {
-    return strcmp(word, "int") == 0 ||
-           strcmp(word, "for") == 0 ||
-           strcmp(word, "while") == 0 ||
-           strcmp(word, "if") == 0 ||
-           strcmp(word, "else") == 0 ||
-           strcmp(word, "return") == 0 ||
-           strcmp(word, "print") == 0 ||
-           strcmp(word, "printf") == 0;
+    const char* keywords[] = {
+        "auto", "break", "case", "char", "const", "continue",
+        "default", "do", "double", "else", "enum", "extern",
+        "float", "for", "goto", "if", "int", "long",
+        "register", "return", "short", "signed", "sizeof", "static",
+        "struct", "switch", "typedef", "union", "unsigned", "void",
+        "volatile", "while"
+    };
+
+    int numKeywords = sizeof(keywords) / sizeof(keywords[0]);
+    for (int i = 0; i < numKeywords; ++i) {
+        if (strcmp(word, keywords[i]) == 0) return 1;
+    }
+    return 0;
 }
 
+
 TokenType getKeywordType(const char* word) {
-    if (strcmp(word, "int") == 0) return TOKEN_INT;
-    if (strcmp(word, "for") == 0) return TOKEN_FOR;
-    if (strcmp(word, "while") == 0) return TOKEN_WHILE;
-    if (strcmp(word, "if") == 0) return TOKEN_IF;
+    if (strcmp(word, "auto") == 0) return TOKEN_AUTO;
+    if (strcmp(word, "break") == 0) return TOKEN_BREAK;
+    if (strcmp(word, "case") == 0) return TOKEN_CASE;
+    if (strcmp(word, "char") == 0) return TOKEN_CHAR;
+    if (strcmp(word, "const") == 0) return TOKEN_CONST;
+    if (strcmp(word, "continue") == 0) return TOKEN_CONTINUE;
+    if (strcmp(word, "default") == 0) return TOKEN_DEFAULT;
+    if (strcmp(word, "do") == 0) return TOKEN_DO;
+    if (strcmp(word, "double") == 0) return TOKEN_DOUBLE;
     if (strcmp(word, "else") == 0) return TOKEN_ELSE;
+    if (strcmp(word, "enum") == 0) return TOKEN_ENUM;
+    if (strcmp(word, "extern") == 0) return TOKEN_EXTERN;
+    if (strcmp(word, "float") == 0) return TOKEN_FLOAT;
+    if (strcmp(word, "for") == 0) return TOKEN_FOR;
+    if (strcmp(word, "goto") == 0) return TOKEN_GOTO;
+    if (strcmp(word, "if") == 0) return TOKEN_IF;
+    if (strcmp(word, "int") == 0) return TOKEN_INT;
+    if (strcmp(word, "long") == 0) return TOKEN_LONG;
+    if (strcmp(word, "register") == 0) return TOKEN_REGISTER;
     if (strcmp(word, "return") == 0) return TOKEN_RETURN;
+    if (strcmp(word, "short") == 0) return TOKEN_SHORT;
+    if (strcmp(word, "signed") == 0) return TOKEN_SIGNED;
+    if (strcmp(word, "sizeof") == 0) return TOKEN_SIZEOF;
+    if (strcmp(word, "static") == 0) return TOKEN_STATIC;
+    if (strcmp(word, "struct") == 0) return TOKEN_STRUCT;
+    if (strcmp(word, "switch") == 0) return TOKEN_SWITCH;
+    if (strcmp(word, "typedef") == 0) return TOKEN_TYPEDEF;
+    if (strcmp(word, "union") == 0) return TOKEN_UNION;
+    if (strcmp(word, "unsigned") == 0) return TOKEN_UNSIGNED;
+    if (strcmp(word, "void") == 0) return TOKEN_VOID;
+    if (strcmp(word, "volatile") == 0) return TOKEN_VOLATILE;
+    if (strcmp(word, "while") == 0) return TOKEN_WHILE;
     if (strcmp(word, "print") == 0 || strcmp(word, "printf") == 0) return TOKEN_PRINT;
     return TOKEN_IDENTIFIER;
 }
